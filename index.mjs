@@ -1,21 +1,42 @@
 
-import {slowFibo, fastFibo} from './fibo-lib.mjs';
+import { slowFibo, fastFibo } from './fibo-lib.mjs';
 
-const fn = 44;
+const limit = 44; // 1476 returns Infinity
 
-console.log(`\n### --- fibonacci: ${fn} --- ###`);
+console.log(`\n### --- fibonacci test [1 - ${limit}] --- ###`);
 
-let fastTime = new Date().getTime();
-console.log("FAST");
-const fast = fastFibo(fn);
-fastTime = new Date().getTime() - fastTime;
-console.log(` ... fast: ${fast}, ${fastTime/1000} s`);
+const bFast = true;
+const bSlow = true;
 
-let slowTime = new Date().getTime();
-console.log("SLOW");
-const slow = slowFibo(fn);
-slowTime = new Date().getTime() - slowTime;
-console.log(` ... slow: ${slow}, ${slowTime/1000} s`);
+let fastResult = 0;
+let slowResult = 0;
+
+let fastTime = 0;
+let slowTime = 0;
+
+for (let fn = 1; fn <= limit; fn++) {
+
+  if (bFast) {
+    fastTime = new Date().getTime();
+    fastResult = fastFibo(fn);
+    fastTime = new Date().getTime() - fastTime;
+  }
+
+  if (bSlow) {
+    slowTime = new Date().getTime();
+    slowResult = slowFibo(fn);
+    slowTime = new Date().getTime() - slowTime;
+  }
+
+  let strFast = bFast ? `fast: ${fastResult}, ${fastTime / 1000} s` : "";
+
+  let strSlow = bSlow ? `slow: ${slowResult}, ${slowTime / 1000} s` : "";
+ 
+  console.log( `fn(${fn}) - ` + strFast + " " + strSlow );
+}
+
+
+
 
 console.log(`\n### --- --- --- --- --- --- ###`);
 
