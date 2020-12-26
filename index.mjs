@@ -8,11 +8,8 @@ console.log(`\n### --- fibonacci test [1 - ${limit}] --- ###`);
 const bFast = true;
 const bSlow = true;
 
-let fastResult = 0;
-let slowResult = 0;
-
-let fastTime = 0;
-let slowTime = 0;
+let fastResult, slowResult = 0;
+let fastTime, slowTime = 0;
 
 for (let fn = 1; fn <= limit; fn++) {
 
@@ -29,14 +26,9 @@ for (let fn = 1; fn <= limit; fn++) {
   }
 
   let strFast = bFast ? `fast: ${fastResult}, ${fastTime / 1000} s` : "";
-
   let strSlow = bSlow ? `slow: ${slowResult}, ${slowTime / 1000} s` : "";
  
   console.log( `fn(${fn}) - ` + strFast + " " + strSlow );
 }
 
-
-
-
 console.log(`\n### --- --- --- --- --- --- ###`);
-
